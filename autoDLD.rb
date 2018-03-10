@@ -31,7 +31,7 @@ class Lab1
     raise "Oops, the output file will be too large for more than 9 bits" if @n > 9
 
     puts "Insert each element that is supposed to evaluate to true, seperated by space or comma:"
-    @t = gets.split(/[\s,.;]+/).map &:to_i
+    @t = gets.split(/[\s,.;]+/).map(&:to_i).uniq
 
     raise "Everything set to false is trivial" if @t.empty?
     raise "Everything set to true is trivial" if @t.size == 1 << @n
