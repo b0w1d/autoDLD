@@ -357,7 +357,7 @@ module #{@name}_G(in, out);
 #{"\n  wire or0;" if _}#{"\n  wire #{nots};" unless nots.empty?}
 #{"  wire #{ands};\n"}
 #{noth.to_a.sort_by(&:last).map { |s, c| "  not not_#{c}(not#{c}, in[#{s.match(/\d+/)[0]}]);"} .join(?\n) }#{?\n unless noth.empty? }
-      #{@solution[1..-1].zip(0...@solution.size - 1).map { |a, i| "  and and_#{i}(and#{i}, " + "#{a.map { |s| s.match(/!/).nil? ? "in[#{s.match(/\d+/)[0]}]" : "not#{noth[s]}"} .join(', ')});" } .join(?\n) }
+#{@solution[1..-1].zip(0...@solution.size - 1).map { |a, i| "  and and_#{i}(and#{i}, " + "#{a.map { |s| s.match(/!/).nil? ? "in[#{s.match(/\d+/)[0]}]" : "not#{noth[s]}"} .join(', ')});" } .join(?\n) }
 #{_ ? "\n  or or_0(or0, #{ands});\n\n  not not_f(out, or0);" : "\n  or or_0(out, #{ands});" if ands.size > 1}
 endmodule
 
