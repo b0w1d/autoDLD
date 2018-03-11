@@ -13,6 +13,7 @@
   ```
 
   Then you can run: ruby autoDLD.rb
+  If there is still some problem, also try to brew link imagemagick@6.
 =end
 
 require 'prawn'
@@ -269,7 +270,7 @@ class Lab1
       ty = 120 + agcgp * (3 * i + 1)
       g = 2 * agcgp / (a.size + 1)
       a.each.with_index do |s, i|
-        neg, idx = !s.match(/!/).nil?, s.match(/\d+/)[0].to_i
+        neg, idx = !s.match(/!/).nil?, @n - 1 - s.match(/\d+/)[0].to_i
         unless neg
           draw = Magick::Draw.new
           draw.line(170 + idx * 32, ty + g * (i + 1), agcsx, ty + g * (i + 1))
